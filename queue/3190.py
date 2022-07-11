@@ -79,6 +79,6 @@ while pos and pos[-1][0] >= 0 and pos[-1][0] <= n-1 and pos[-1][1] >= 0 and pos[
         else:
             apples[next[0]].remove(next[1]); 
     time += 1;
-    print(pos);
+    # print(pos);
 print(time);
 
