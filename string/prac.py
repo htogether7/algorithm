@@ -1,2 +1,4 @@
-a = {1:2, 3:4};
-print(2 in a.values())
+a = "abc";
+b = "ajfd"
+
+print(a-b);
