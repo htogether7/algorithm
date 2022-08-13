@@ -1,16 +1,16 @@
 import sys;
-from collections import deque;
+# from collections import deque;
 from collections import defaultdict
 input = sys.stdin.readline;
 n, d, k, c = map(int, input().split());
 
-sushi = deque([]);
+sushi = [];
 
 for _ in range(n):
     sushi.append(int(input()));
 
 sushi = sushi * 2;
-count = 0;
+# count = 0;
 sushi_sort = defaultdict(int);
 for i in range(0,k):
     # if sushi[i] in sushi_sort:
