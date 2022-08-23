@@ -26,7 +26,7 @@ for (ind,x) in enumerate(arr):
                     # board[i] = max(board[i], board[ind])
                 # max_price = max_price + price;
                 # print(max_price);
-print(board);
+# print(board);/
 print(max(board));
 # print(board[-1]);
 
