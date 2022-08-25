@@ -1,13 +1,15 @@
 import sys;
 from collections import deque
-from tabnanny import check;
+import copy;
+
+
 input = sys.stdin.readline;
 
 n, m = map(int, input().rstrip().split());
 
 board = [list(map(int, input().rstrip().split()))for _ in range(n)];
 
-board_copy = [board[i][::] for i in range(n)];
+# board_copy = [board[i][::] for i in range(n)];
 
 zeros = [];
 max_safe_zone = 0;
@@ -27,7 +29,8 @@ def dfs(count):
     global max_safe_zone;
     if count == 3:
         tmp_count = 0;
-        tmp_board = [board[i][::] for i in range(n)];
+        # tmp_board = [board[i][::] for i in range(n)];
+        tmp_board = copy.deepcopy(board);
         check_break = False;
         for y in range(n):
             for x in range(m):
