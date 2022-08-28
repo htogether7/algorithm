@@ -28,8 +28,8 @@ for start_row in range(1,n):
         for end_row in range(start_row+1,n+1):
             for end_col in range(start_col+1, m+1):
                 result = max(result, sum[end_row][end_col] - sum[end_row][start_col] - sum[start_row][end_col] + sum[start_row][start_col]);
-
-print(result);
+print(sum);
+print(result)
         # for end_i in range(i,n+1):
         #     for end_j in range(j,m+1):
         #         tmp_result = 0;
