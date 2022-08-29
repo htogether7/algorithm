@@ -23,10 +23,10 @@ for i in range(1,n+1):
 
 # print(sum);
 
-for start_row in range(1,n):
+for start_row in range(1,n+1):
     for start_col in range(1,m+1):
-        for end_row in range(start_row+1,n+1):
-            for end_col in range(start_col+1, m+1):
+        for end_row in range(start_row,n+1):
+            for end_col in range(start_col, m+1):
                 result = max(result, sum[end_row][end_col] - sum[end_row][start_col] - sum[start_row][end_col] + sum[start_row][start_col]);
 print(sum);
 print(result)
