@@ -13,7 +13,7 @@ order = [chr(i) for i in range(65, 65 + k)];
 unknown_index = 0;
 for i in range(n):
     if board[i][0] != "?":
-        for j in range(k-2):
+        for j in range(k-1):
             if board[i][j] == "-":
                 order[j], order[j+1] = order[j+1], order[j];
         # print(order);
