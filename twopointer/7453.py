@@ -15,17 +15,17 @@ for _ in range(n):
 ab = []
 cd = []
 dict_ab = defaultdict(int)
-dict_cd = defaultdict(int)
+# dict_cd = defaultdict(int)
 for i in range(n):
     for j in range(n):
         dict_ab[arr[i][0] + arr[j][1]] += 1
-        dict_cd[arr[i][2] + arr[j][3]] += 1
+        # dict_cd[arr[i][2] + arr[j][3]] += 1
         # ab.append(arr[i][0] + arr[j][1])
         # cd.append(arr[i][2] + arr[j][3])
 ab_keys = list(dict_ab.keys())
-cd_keys = list(dict_cd.keys())
+# cd_keys = list(dict_cd.keys())
 ab_keys.sort()
-cd_keys.sort()
+# cd_keys.sort()
 # ab.sort()
 # cd.sort()
 
