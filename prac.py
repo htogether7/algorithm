@@ -1,3 +1,3 @@
-a = "aabaaa"
+a = [1,2,3,4]
 
-print("aabaa" in a)
+print(a[2:])
