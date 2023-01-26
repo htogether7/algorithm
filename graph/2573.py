@@ -72,7 +72,7 @@ def land_count():
             if len(q) == 0:
                 count += 1
             # print(count, q_r,q_c)
-            print(q, count_set, count_dict)
+            # print(q, count_set, count_dict)
         if count >= 2:
             break
         # print(board)
