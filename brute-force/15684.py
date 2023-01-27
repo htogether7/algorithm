@@ -38,11 +38,15 @@ def go_down(board):
             if board[i][j] == 1:
                 order[j], order[j+1] = order[j+1], order[j]
     # print(order)
-    if order == sorted(order):
-        # print("YES")
-        return True
-    else:
-        return False
+    for i, num in enumerate(order):
+        if i != num:
+            return False
+    return True
+    # if order == sorted(order):
+    #     # print("YES")
+    #     return True
+    # else:
+    #     return False
 
 def check_possible(path_arr):
     copy_board = [board[i][::] for i in range(h)]
@@ -69,7 +73,9 @@ def choose_path(n):
             if check_possible(chosen_path):
                 answer = n
             return 
-
+        
+        if s >= len(possible_path):
+            return
         for i in range(s,len(possible_path) - n + l+1):
             check_pass = False
             for path in chosen_path:
@@ -88,7 +94,7 @@ for i in range(4):
     # print(i)
     choose_path(i)
     if answer != -1:
-        print(answer)
+        print(i)
         break
 
 if answer == -1:
