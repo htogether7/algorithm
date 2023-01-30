@@ -13,31 +13,44 @@ def check_left(i):
     if i <= 1:
         return False
     
-    l = i-2
+    l = 0
     r = i-1
 
-    while board[l] + board[r] >= board[i]:
-        if board[l] + board[r] == board[i]:
+    while l < r:
+        if board[l]+board[r] == board[i]:
             return True
 
-        if r == l+1:
-            if l != 0:
-                l -= 1
-                continue
-            else:
-                return False
+        if board[l]+board[r] > board[i]:
+            r -= 1
+        else:
+            l += 1
+
+    # while board[l] + board[r] >= board[i]:
+    #     if board[l] + board[r] == board[i]:
+    #         return True
+
+    #     if r == l+1:
+    #         if l != 0:
+    #             l -= 1
+    #             continue
+    #         else:
+    #             return False
 
         
-        # if l == 0 and r == 1:
-            # return False
-        if l == 0:
-            r -= 1
-            continue
+    #     # if l == 0 and r == 1:
+    #         # return False
+    #     if l == 0:
+    #         r -= 1
+    #         continue
 
-        if abs(board[l] - board[l-1]) <= abs(board[r] - board[r-1]):
-            l -= 1
-        else:
-            r -= 1
+    #     # if abs(board[l] - board[l-1]) <= abs(board[r] - board[r-1]):
+    #     #     l -= 1
+    #     # else:
+    #     #     r -= 1
+    #     if board[l-1] + board[r] <= board[l] + board[r-1]:
+    #         l -= 1
+    #     else:
+    #         r -= 1
 
     return False
 
@@ -48,27 +61,40 @@ def check_right(i):
         return False
     
     l = i+1
-    r = i+2
-
-    while board[l]+board[r] <= board[i]:
-        if board[l] + board[r] == board[i]:
+    r = len(board)-1
+    
+    while l < r:
+        if board[l]+board[r] == board[i]:
             return True
-        
-        if l == r-1:
-            if r == len(board)-1:
-                return False
-            else:
-                r += 1
-                continue
-        
-        if r == len(board)-1:
-            l += 1
-            continue
 
-        if abs(board[l] - board[l+1]) >= abs(board[r] - board[r+1]):
-            r += 1
+        if board[l]+board[r] > board[i]:
+            r -= 1
         else:
             l += 1
+        
+    # while board[l]+board[r] <= board[i]:
+    #     if board[l] + board[r] == board[i]:
+    #         return True
+        
+    #     if l == r-1:
+    #         if r == len(board)-1:
+    #             return False
+    #         else:
+    #             r += 1
+    #             continue
+        
+    #     if r == len(board)-1:
+    #         l += 1
+    #         continue
+
+    #     # if abs(board[l] - board[l+1]) >= abs(board[r] - board[r+1]):
+    #         # r += 1
+    #     # else:
+    #         # l += 1
+    #     if board[l]+board[r+1] > board[l+1]+board[r]:
+    #         r += 1
+    #     else:
+    #         l += 1
     return False
 
 def check_both(i):
