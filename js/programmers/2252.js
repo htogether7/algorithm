@@ -6,7 +6,7 @@ const check = new Array(n + 1).fill(0);
 for (let i = 1; i < m + 1; i++) {
   const [a, b] = input[i].split(" ").map((x) => +x);
   //   console.log(a, b);
-  check[a] = 1;
+  check[a] += 1;
   map[b].push(a);
 }
 // const compareOrder = input.slice(1).map((x) => x.split(" ").map((i) => +i));
@@ -17,28 +17,28 @@ const visited = new Array(n + 1).fill(0);
 // }
 // console.log(map);
 // console.log(check);
-const result = [];
-let stack = [];
-const dfs = (s) => {
-  stack = [s];
-  const tmp_result = [];
-  while (stack.length !== 0) {
-    next = stack.pop();
-    tmp_result.push(next);
+// const result = [];
+// let stack = [];
+// const dfs = (s) => {
+//   stack = [s];
+//   const tmp_result = [];
+//   while (stack.length !== 0) {
+//     next = stack.pop();
+//     tmp_result.push(next);
 
-    for (let num of map[next]) {
-      if (visited[num] === 1) {
-        continue;
-      }
-      stack.push(num);
-      visited[num] = 1;
-    }
-  }
-  //   console.log(tmp_result);
-  while (tmp_result.length !== 0) {
-    result.push(tmp_result.pop());
-  }
-};
+//     for (let num of map[next]) {
+//       if (visited[num] === 1) {
+//         continue;
+//       }
+//       stack.push(num);
+//       visited[num] = 1;
+//     }
+//   }
+//   //   console.log(tmp_result);
+//   while (tmp_result.length !== 0) {
+//     result.push(tmp_result.pop());
+//   }
+// };
 
 // dfs(3);
 // const dfs = (l) => {
@@ -60,17 +60,47 @@ const dfs = (s) => {
 // };
 
 // console.log(result);
+const result = [];
+const q = [];
 for (let i = 1; i < n + 1; i++) {
   if (check[i] === 0) {
+    if (visited[i] === 1) {
+      continue;
+    }
+    result.push(i);
     visited[i] = 1;
-    dfs(i);
+    for (let num of map[i]) {
+      check[num] -= 1;
+      if (visited[num] === 1) {
+        continue;
+      }
+      if (check[num] === 0) {
+        q.push(num);
+        visited[num] = 1;
+      }
+    }
+    // console.log(check, result, q);
+    while (q.length > 0) {
+      next = q.shift();
+      result.push(next);
+      for (let num of map[next]) {
+        check[num] -= 1;
+        if (visited[num] === 1) {
+          continue;
+        }
+        if (check[num] === 0) {
+          q.push(num);
+          visited[num] = 1;
+        }
+      }
+    }
   }
-  stack = [];
 }
+// console.log(result);
 // console.log(check);
 // console.log(map);
 // console.log(visited);
-console.log(result.join(" "));
+console.log(result.reverse().join(" "));
 // console.log(compareOrder);
 // console.log(n, m);
 // console.log(input);
