@@ -11,8 +11,9 @@ def bs(board,target):
     e_index = len(board)
     while s_index <= e_index:
         mid_index = (s_index + e_index) // 2
-        
-        if board[mid_index] < target:
+        if board[mid_index] == target:
+            return mid_index
+        elif board[mid_index] < target:
             s_index = mid_index+1
         else:
             e_index = mid_index-1
