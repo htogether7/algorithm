@@ -2,7 +2,7 @@ let fs = require("fs");
 let input = fs.readFileSync("case.txt").toString().split("\n");
 const n = parseInt(input[0]);
 const m = parseInt(input[1]);
-const parents = new Array(n + 1).fill(0);
+const parents = Array.from({ length: n + 1 }, (_, i) => i);
 const path = [];
 for (let i = 2; i < input.length; i++) {
   const [a, b, c] = input[i].split(" ").map((x) => +x);
@@ -18,59 +18,43 @@ const findParent = (s, parents) => {
   if (s === parents[s]) {
     return s;
   }
-  return findParent(parents[s], parents);
+  parents[s] = findParent(parents[s], parents);
+  return parents[s];
+};
+
+const paintParent = (s, parents) => {
+  const arr = [];
+  return arr;
 };
 
 for (let i = 0; i < path.length; i++) {
   const [c, a, b] = path[i];
-  if (a === b) {
-    continue;
-  }
+  //   if (a === b) {
+  //     continue;
+  //   }
   const parentA = findParent(a, parents);
   const parentB = findParent(b, parents);
-  if (parents[a] === 0 && parents[b] === 0) {
-    answer += c;
-    parents[a] = Math.min(a, b);
-    parents[b] = Math.min(a, b);
-  } else if (parents[a] === 0) {
-    answer += c;
-    // const parentB = findParent(b);
-    if (a < parentB) {
-      parents[a] = a;
-      parents[parentB] = a;
-    } else {
-      parents[a] = parentB;
-    }
-    // parents[a] = b;
-  } else if (parents[b] === 0) {
-    answer += c;
 
-    if (b < parentA) {
-      parents[parentA] = b;
-      parents[b] = b;
-    } else {
-      parents[b] = parentA;
-    }
+  // const parentA = findParent(a, parents);
+
+  // console.log(a, parentA);
+  // console.log(b, parentB);
+  if (parentA === parentB) {
+    continue;
   } else {
-    // const parentA = findParent(a, parents);
-
-    // console.log(a, parentA);
-    // console.log(b, parentB);
-    if (parentA === parentB) {
-      continue;
+    answer += c;
+    if (parentA < parentB) {
+      parents[parentB] = parentA;
     } else {
-      answer += c;
-      if (parentA < parentB) {
-        parents[b] = parentA;
-      } else {
-        parents[a] = parentB;
-      }
-      //   parent = Math.min(a, b);
-      //   parents[a] = parent;
-      //   parents[b] = parent;
+      parents[parentA] = parentB;
     }
+    //   parent = Math.min(a, b);
+    //   parents[a] = parent;
+    //   parents[b] = parent;
   }
+
   selected.push(path[i]);
+  //   console.log(parents);
 }
 // console.log(selected);
 // console.log(counts);

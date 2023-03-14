@@ -46,6 +46,7 @@ const solution = (input) => {
     }
   }
   log(answer);
+  log(disjointSet.parent);
 };
 
 solution(input);
