@@ -46,10 +46,8 @@ def water_spread(board,waters):
 def move(board,queue):
     global answer
     next_queue = deque()
-    # print(board)
     while queue:
         [now_y, now_x], time = queue.popleft()
-        # print(now_y,now_x)
         for i in range(4):
             next_y = now_y + dy[i]
             next_x = now_x + dx[i]
@@ -62,13 +60,11 @@ def move(board,queue):
             if board[next_y][next_x] == ".":
                 next_queue.append([[next_y,next_x], time+1])
                 board[next_y][next_x] = "S"
-        # print(next_queue)
     return next_queue
             
 
 
 while True:
-    # print(board)
     waters = water_spread(board, waters)
     queue = move(board,queue)
 
@@ -79,9 +75,3 @@ while True:
     if not queue:
         print("KAKTUS")
         break
-    
-    
-
-        # for i in range(4)
-
-# print(board)
